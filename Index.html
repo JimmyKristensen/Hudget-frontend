@@ -15,23 +15,48 @@
     <script type="text/javascript" src="/JavaScript/app.js"></script>
 
 </head>
-<body>
+<body class="container">
     <header>
-        <h2>Hudget</h2>
-        <nav>
-            <a href="#">Login</a>
-        </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <h2>Hudget</h2>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+              </ul>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                </ul>
+            </div>
+          </nav>
     </header>
 
-    <main>
+    <main class="mt-5">
         <div id="view"></div>
 
-
+        <!--Homepage template-->
         <template id="template-homepage">
-
+            <div class="row" id="frontend-info">
+                <h1 class="col-12 text-center font-weight-bold ">Hudget</h1>
+                <p class="col-12 text-center">An app til help students with managing a budget</p>
+            </div>
         </template>
 
+          <form>
+            <label for="monthly_budget">Current budget:</label>
+            <input name="monthly_budget" type="number" value="0">
+            <label for="monthly_budget">,-</label>
+          </form>
 
+          
     </main>
 </body>
 </html>
