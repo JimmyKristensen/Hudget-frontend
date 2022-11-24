@@ -1,0 +1,58 @@
+'use strict'
+/**
+* Route template constants.
+*/
+const ROUTE_TEMPLATE_KEY_HOME = 'home'  //variable assigned for creating html clones for the router
+/*
+const ROUTE_TEMPLATE_KEY_ABOUT =
+const ROUTE_TEMPLATE_KEY_LOGIN =
+const ROUTE_TEMPLATE_KEY_LOGOUT =
+const ROUTE_TEMPLATE_KEY_ADMIN =
+ */
+
+/**
+* Route constants.
+*/
+const ROUTE_HOME = '/'  //path variable assigned for creating html clones for the router
+/*
+const ROUTE_ABOUT = 
+const ROUTE_LOGIN = 
+const ROUTE_LOGOUT = 
+const ROUTE_ADMIN = 
+*/
+ 
+/**
+* Defines the routing templates used and their respective render functions/actions.
+*/
+template(ROUTE_TEMPLATE_KEY_HOME, home)
+template(ROUTE_TEMPLATE_KEY_ABOUT, about)
+template(ROUTE_TEMPLATE_KEY_LOGIN, login)
+template(ROUTE_TEMPLATE_KEY_LOGOUT, logout)
+template(ROUTE_TEMPLATE_KEY_ADMIN, admin)
+ 
+/**
+* Defines the #/... url routes and the templates they match..
+*/
+route(ROUTE_HOME, ROUTE_TEMPLATE_KEY_HOME);
+route(ROUTE_ABOUT, ROUTE_TEMPLATE_KEY_ABOUT);
+route(ROUTE_LOGIN, ROUTE_TEMPLATE_KEY_LOGIN);
+route(ROUTE_LOGOUT, ROUTE_TEMPLATE_KEY_LOGOUT);
+route(ROUTE_ADMIN, ROUTE_TEMPLATE_KEY_ADMIN);
+
+
+
+let view_div = document.getElementById('view');
+
+function cloneHtmlTemplate(id) {
+    let div = document.createElement('div'); //Creates the div that is made inside of the view div from the html file.
+    const template = document.querySelector(`#${id}`); //router.jss has a method that slices at the first '/' in the URL and then uses quearySelector on the id to get the element.
+    const clone = template.content.cloneNode(true); //Clone node copies it elements attributes and when set as true also its decendents(childs) 
+    div.appendChild(clone) //appendchild adds to the targeted area the content.
+    return div
+}
+
+
+
+function home(){
+    $(view_div).html( cloneHtmlTemplate('template-home'));
+}
