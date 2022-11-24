@@ -1,3 +1,4 @@
+'use strict'
 /**
 * Route template constants.
 */
@@ -37,12 +38,6 @@ route(ROUTE_ABOUT, ROUTE_TEMPLATE_KEY_ABOUT);
 route(ROUTE_LOGIN, ROUTE_TEMPLATE_KEY_LOGIN);
 route(ROUTE_LOGOUT, ROUTE_TEMPLATE_KEY_LOGOUT);
 route(ROUTE_ADMIN, ROUTE_TEMPLATE_KEY_ADMIN);
-
- 
-
-let routes = {};
-let templates = {};
-
 
 
 
