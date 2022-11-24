@@ -1,22 +1,24 @@
 /**
 * Route template constants.
 */
-const ROUTE_TEMPLATE_KEY_HOME = 'home'
-const ROUTE_TEMPLATE_KEY_ABOUT = 'about'
-const ROUTE_TEMPLATE_KEY_LOGIN = 'login'
-const ROUTE_TEMPLATE_KEY_LOGOUT = 'logout'
-const ROUTE_TEMPLATE_KEY_ADMIN = 'admin'
- 
+const ROUTE_TEMPLATE_KEY_HOME = 'home'  //variable assigned for creating html clones for the router
+/*
+const ROUTE_TEMPLATE_KEY_ABOUT =
+const ROUTE_TEMPLATE_KEY_LOGIN =
+const ROUTE_TEMPLATE_KEY_LOGOUT =
+const ROUTE_TEMPLATE_KEY_ADMIN =
+ */
+
 /**
 * Route constants.
 */
-const ROUTE_HOME = '/'
-const ROUTE_ABOUT = '/about'
-const ROUTE_LOGIN = '/login'
-const ROUTE_LOGOUT = '/logout'
-const ROUTE_ADMIN = '/admin'
-
-const VIEW_ELEMENT_ID = "#view"
+const ROUTE_HOME = '/'  //path variable assigned for creating html clones for the router
+/*
+const ROUTE_ABOUT = 
+const ROUTE_LOGIN = 
+const ROUTE_LOGOUT = 
+const ROUTE_ADMIN = 
+*/
  
 /**
 * Defines the routing templates used and their respective render functions/actions.
@@ -42,21 +44,9 @@ let routes = {};
 let templates = {};
 
 
-function Route(path, template){
-    if (typeof template === 'function'){
-        return routes[path] = template;
-    }
-    else if(typeof template === 'string') {
-        return routes[path] = template[template];
-    }
-    else{
-        return;
-    };
-};
+
 
 let view_div = document.getElementById('view');
-
-
 
 function cloneHtmlTemplate(id) {
     let div = document.createElement('div'); //Creates the div that is made inside of the view div from the html file.
@@ -64,4 +54,10 @@ function cloneHtmlTemplate(id) {
     const clone = template.content.cloneNode(true); //Clone node copies it elements attributes and when set as true also its decendents(childs) 
     div.appendChild(clone) //appendchild adds to the targeted area the content.
     return div
+}
+
+
+
+function home(){
+    $(view_div).html( cloneHtmlTemplate('template-home'));
 }
