@@ -1,21 +1,19 @@
 'use strict'
 
 const ROUTE_TEMPLATE_KEY_HOME = 'home'
-const ROUTE_TEMPLATE_KEY_TEST = 'test'
+const ROUTE_TEMPLATE_KEY_WEEK = 'week'
 
 const ROUTE_HOME = '/'
-const ROUTE_TEST = '/test'
+const ROUTE_WEEK = '/week'
 
 const VIEW_ELEMENT_ID = "#view"
 
 template(ROUTE_TEMPLATE_KEY_HOME, home);
-
-template(ROUTE_TEMPLATE_KEY_TEST, test);
+template(ROUTE_TEMPLATE_KEY_WEEK, week);
 
 
 route(ROUTE_HOME, ROUTE_TEMPLATE_KEY_HOME);
-
-route(ROUTE_TEST, ROUTE_TEMPLATE_KEY_TEST);
+route(ROUTE_WEEK, ROUTE_TEMPLATE_KEY_WEEK);
 
 
 
@@ -31,6 +29,6 @@ function home() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-homepage'));
 };
 
-function test() {
-    $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('hello'));
+function week() {
+    $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-weekpage'));
 };

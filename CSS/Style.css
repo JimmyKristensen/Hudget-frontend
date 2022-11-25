@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+main{
+    background-color: #B2BEB5;
+}
+
 #frontend-info{
     margin-top: 10vw;
 }
@@ -11,6 +15,6 @@
     background-color: green;
 }
 
-main{
-    background-color: pink;
+#monthly_budget{
+    background-color: green;
 }
