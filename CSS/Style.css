@@ -3,8 +3,8 @@
     padding: 0;
 }
 
-main{
-    background-color: #B2BEB5;
+body{
+    background-color: #BEBEBE;
 }
 
 #frontend-info{
@@ -17,4 +17,8 @@ main{
 
 #monthly_budget{
     background-color: green;
+}
+
+.whiteBackgroundColor{
+    background-color: white;
 }
