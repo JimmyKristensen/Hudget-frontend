@@ -22,3 +22,7 @@ body{
 .whiteBackgroundColor{
     background-color: white;
 }
+
+.bottomBorder{
+    border-bottom: black 1px solid;
+}
