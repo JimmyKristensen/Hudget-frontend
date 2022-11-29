@@ -1,11 +1,15 @@
 'use strict'
 
 const ROUTE_TEMPLATE_KEY_HOME = 'home'
+const ROUTE_TEMPLATE_KEY_TEST = 'test'
+const ROUTE_TEMPLATE_KEY_MONTH = 'month'
 const ROUTE_TEMPLATE_KEY_WEEK = 'week'
 const ROUTE_TEMPLATE_KEY_LOGIN = 'login'
 const ROUTE_TEMPLATE_KEY_CREATEUSER = 'createUser'
 
 const ROUTE_HOME = '/'
+const ROUTE_TEST = '/test'
+const ROUTE_MONTH = '/month'
 const ROUTE_WEEK = '/week'
 const ROUTE_LOGIN = '/login'
 const ROUTE_CREATEUSER = '/createUser'
@@ -16,6 +20,7 @@ template(ROUTE_TEMPLATE_KEY_HOME, home);
 template(ROUTE_TEMPLATE_KEY_WEEK, week);
 template(ROUTE_TEMPLATE_KEY_LOGIN, login);
 template(ROUTE_TEMPLATE_KEY_CREATEUSER, createUser);
+template(ROUTE_TEMPLATE_KEY_MONTH, month);
 
 
 route(ROUTE_HOME, ROUTE_TEMPLATE_KEY_HOME);
@@ -24,6 +29,7 @@ route(ROUTE_LOGIN, ROUTE_TEMPLATE_KEY_LOGIN);
 route(ROUTE_CREATEUSER, ROUTE_TEMPLATE_KEY_CREATEUSER);
 
 
+route(ROUTE_MONTH, ROUTE_TEMPLATE_KEY_MONTH);
 
 function cloneHtmlTemplate(id) {
     let div = document.createElement('div');
@@ -36,7 +42,9 @@ function cloneHtmlTemplate(id) {
 function home() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-homepage'));
 };
-
+function test() {
+    $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('hello'));
+}
 function week() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-weekpage'));
 };
@@ -47,4 +55,21 @@ function login() {
 
 function createUser() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-createUser'));
+}
+
+function month() {
+    $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('month'));
+    let CalenderDate = new Date();
+    let yearString = String(CalenderDate.getUTCFullYear());
+    CalenderDate.setMonth(3);
+    let monthString = String(CalenderDate.getUTCMonth());
+    const monthVariable = document.getElementById("MonthVariable");
+    if(monthString.length < 2){
+        monthString = 0 + monthString
+    }
+
+    fetchMonth(parseInt(monthString)); //Gets the data from Json using the month number as id
+
+
+    monthVariable.innerHTML = monthString+"/"+yearString;
 };
