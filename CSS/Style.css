@@ -5,11 +5,21 @@
 
 body{
     background-color: #BEBEBE;
+    position: relative;
+    min-height: 100vh;
 }
 
-#frontend-info{
-    margin-top: 10vw;
+main{
+    padding-bottom: 2.5rem;
 }
+
+footer {
+    background-color: white;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 
 #week_monthly_budget{
     background-color: green;
@@ -25,4 +35,8 @@ body{
 
 .bottomBorder{
     border-bottom: black 1px solid;
+}
+
+.allButFooter {
+    min-height: calc(100vh - 95px); 
 }
