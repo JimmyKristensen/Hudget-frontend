@@ -61,14 +61,18 @@ function month() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('month'));
     let CalenderDate = new Date();
     let yearString = String(CalenderDate.getUTCFullYear());
-    CalenderDate.setMonth(3);
-    let monthString = String(CalenderDate.getUTCMonth());
+    //CalenderDate.setMonth(3); //Test
+    let monthString = String(CalenderDate.getUTCMonth() +1);
     const monthVariable = document.getElementById("MonthVariable");
     if(monthString.length < 2){
         monthString = 0 + monthString
     }
+    
 
-    fetchMonth(parseInt(monthString)); //Gets the data from Json using the month number as id
+
+    //Need work!!! add weekobjects then everything else
+    let weeksOfMonth = GetWeeksOfMonths(parseInt(monthString), parseInt(yearString));
+    //fetchMonth(parseInt(monthString)); //Gets the data from Json using the month number as id
 
 
     monthVariable.innerHTML = monthString+"/"+yearString;
