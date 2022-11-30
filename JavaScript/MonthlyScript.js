@@ -23,7 +23,6 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
 
-    UpdateMonthUI(weeksOfMonth);
 
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
@@ -58,7 +57,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
 function UpdateMonthUI(weeksInMonth){
     let WeekBoard = document.getElementById("monthContent")
     let metaDiv = clone.querySelector('.monthContent')
-    metaDiv.innerHTML += `<div>`
+    metaDiv.innerHTML += `<div></div>`
 
 }
 
