@@ -1,12 +1,18 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Merriweather', serif;
 }
 
 body{
-    background-color: #BEBEBE;
+    background-color: #f5f5f5;
     position: relative;
     min-height: 100vh;
+}
+
+header{
+    background-color: #ebf5e6;
+    border: solid 1px #004e2c;
 }
 
 main{
@@ -14,7 +20,9 @@ main{
 }
 
 footer {
-    background-color: white;
+    color: #00502d;
+    background-color: #ebf5e6;
+    border: solid 1px #004e2c;
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -22,15 +30,17 @@ footer {
   }
 
 #week_monthly_budget{
-    background-color: green;
+    background-color: #268159;
+    color: white;
 }
 
 #monthly_budget{
-    background-color: green;
+    color: white;
+    background-color: #268159;
 }
 
-.whiteBackgroundColor{
-    background-color: white;
+.greyBackgroundColor{
+    background-color: #dcecd6;
 }
 
 .bottomBorder{
