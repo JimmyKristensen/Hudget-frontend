@@ -39,14 +39,18 @@ footer {
     background-color: #268159;
 }
 
-.greyBackgroundColor{
+.pink{
+    color: rgb(244, 179, 190);
+}
+
+.yellow{
+    color: rgb(220, 220, 21);
+}
+
+.backgroundColor{
     background-color: #dcecd6;
 }
 
 .bottomBorder{
     border-bottom: black 1px solid;
-}
-
-.allButFooter {
-    min-height: calc(100vh - 95px); 
 }
