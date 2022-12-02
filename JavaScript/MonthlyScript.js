@@ -23,6 +23,7 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
 
+    UpdateMonthUI(weeksOfMonth)
 
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
@@ -33,7 +34,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     const htmlString = monthVariable.innerHTML;
     let monthNumber = htmlString.charAt(0)+htmlString.charAt(1);
     let yearNumber = htmlString.charAt(3)+htmlString.charAt(4)+htmlString.charAt(5)+htmlString.charAt(6);
-
+    //-------------------below is month changer code
     monthNumber = parseInt(monthNumber)-1
     
     if(parseInt(monthNumber) < 1){
@@ -46,19 +47,61 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
         //console.log("Less than 2 characters")
         monthNumber = String(0).concat(monthNumber)
     }
-
+    //-------------------above is month changer code
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
+
+    UpdateMonthUI(weeksOfMonth)
 
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
 
-function UpdateMonthUI(weeksInMonth){
-    let WeekBoard = document.getElementById("monthContent")
-    let metaDiv = clone.querySelector('.monthContent')
-    metaDiv.innerHTML += `<div></div>`
 
+
+
+function UpdateMonthUI(weeksInMonth){
+    const body = document.getElementById('monthContent')
+    body.replaceChildren()
+
+    function rowInitializer(i, nothing){
+        if(i%2==0){
+            let rowDiv = document.createElement('div')
+            rowDiv.setAttribute('class', "row");
+            return rowDiv;
+        }else{
+            return nothing;
+        }
+    }
+
+    
+
+    const masterDiv = document.createElement('div')
+    masterDiv.setAttribute('id',"MasterDiv")
+    
+
+    let rowDiv
+for(let i = 0; i < weeksInMonth.length; i++){
+    (i>1 && i%2===0) ? masterDiv.appendChild(rowDiv): null;
+
+    rowDiv = rowInitializer(i, rowDiv);
+    if(i % 2 === 0){
+        let colDiv = document.createElement('div')
+        colDiv.setAttribute('class',"col")
+        colDiv.setAttribute('id',"Week"+[i])
+        rowDiv.appendChild(colDiv)
+        console.log("This posistion is even")
+    }else{
+        let colDiv = document.createElement('div')
+        colDiv.setAttribute('class', "col")
+        colDiv.setAttribute('id',"Week"+[i])        
+        rowDiv.appendChild(colDiv)
+        console.log("This posistion is odd")
+    }
+}
+masterDiv.appendChild(rowDiv)
+body.appendChild(masterDiv)
+console.log(body)
 }
 
 
@@ -70,7 +113,7 @@ function GetWeeksOfMonths(month, year){
     let weeksOfMonth = []
     let startDayInFirstWeek = firstDayOfMonth.getDay();
     let FirstWeekLength = 7-startDayInFirstWeek+1;
-    if(startDayInFirstWeek === 0){
+    if(startDayInFirstWeek === 0){//hardcode to fix sunday bug
         FirstWeekLength = 1
     }
     let temp = new Array();
@@ -107,20 +150,3 @@ function WeekNumberCalculator(currentDate){ //This method takes a date and calcu
     // https://www.geeksforgeeks.org/calculate-current-week-number-in-javascript/
     return weeknumber;
 }
-
-
-
-
-
-/*
-async function fetchMonth(id){
-    const endpoint = "";
-    const response = await fetch(this.endpoint + id);
-    const data = await response.json();
-    console.log(data);
-
-    const jsonString = '{"Date": "2022-1-28"},{"Date": "2022-2-28"},{"Date": "2022-3-28"},{"Date": "2022-4-28"},{"Date": "2022-5-28"},{"Date": "2022-6-28"},{"Date": "2022-7-28"},{"Date": "2022-8-28"},{"Date": "2022-9-28"},{"Date": "2022-10-28"},{"Date": "2022-11-28"},{"Date": "2022-12-28"}';
-    const jsObject =  JSON.parse(jsonString);
-    console.log(jsObject);
-}
-*/
