@@ -16,7 +16,6 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     //Add +1 to month. 
     let monthNumberLen = String(monthNumber).length
     if(monthNumberLen < 2){
-        //console.log("Less than 2 characters")
         monthNumber = String(0).concat(monthNumber)
     }
     
@@ -24,7 +23,7 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
 
     UpdateMonthUI(weeksOfMonth)
-
+    FillMonthUI(weeksOfMonth,monthNumber, yearNumber)
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
@@ -44,7 +43,6 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
 
     let monthNumberLen = String(monthNumber).length
     if(monthNumberLen < 2){
-        //console.log("Less than 2 characters")
         monthNumber = String(0).concat(monthNumber)
     }
     //-------------------above is month changer code
@@ -52,12 +50,24 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
 
     UpdateMonthUI(weeksOfMonth)
+    FillMonthUI(weeksOfMonth,monthNumber, yearNumber)
 
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
 
-
+function FillMonthUI(weeksInMonth, month, year){
+    for (let i = 0; i<weeksInMonth.length; i++){
+        let targetWeek = document.getElementById("Week"+i)
+        let startDateOfWeek = weeksInMonth[i][0]
+        let endDateOfWeek = weeksInMonth[i][weeksInMonth[i].length-1]
+        targetWeek.innerHTML = "Days: ["+startDateOfWeek+" -> "+endDateOfWeek+"]"
+        let aElement = document.createElement('a')
+        aElement.setAttribute('href',"")//-------------------------------------------------------------------------------Link
+        aElement.innerHTML = "<br>Link To Week"
+        targetWeek.appendChild(aElement)
+    }
+}
 
 
 function UpdateMonthUI(weeksInMonth){
@@ -74,12 +84,9 @@ function UpdateMonthUI(weeksInMonth){
         }
     }
 
-    
-
     const masterDiv = document.createElement('div')
     masterDiv.setAttribute('id',"MasterDiv")
-    
-
+    masterDiv.setAttribute('class',"justify-content-center align-items-center text-center")
     let rowDiv
 for(let i = 0; i < weeksInMonth.length; i++){
     (i>1 && i%2===0) ? masterDiv.appendChild(rowDiv): null;
@@ -87,21 +94,18 @@ for(let i = 0; i < weeksInMonth.length; i++){
     rowDiv = rowInitializer(i, rowDiv);
     if(i % 2 === 0){
         let colDiv = document.createElement('div')
-        colDiv.setAttribute('class',"col")
+        colDiv.setAttribute('class',"col backgroundColor mt-1")
         colDiv.setAttribute('id',"Week"+[i])
         rowDiv.appendChild(colDiv)
-        console.log("This posistion is even")
     }else{
         let colDiv = document.createElement('div')
-        colDiv.setAttribute('class', "col")
+        colDiv.setAttribute('class', "col backgroundColor mt-1")
         colDiv.setAttribute('id',"Week"+[i])        
         rowDiv.appendChild(colDiv)
-        console.log("This posistion is odd")
     }
 }
 masterDiv.appendChild(rowDiv)
 body.appendChild(masterDiv)
-console.log(body)
 }
 
 
@@ -134,19 +138,13 @@ function GetWeeksOfMonths(month, year){
         }
     }
     weeksOfMonth.push(temp)
-    
-    for (let i = 0; i < weeksOfMonth.length; i++) {
-        console.log(weeksOfMonth[i])
-    }
-    
     return weeksOfMonth;
 }
 
 
 function WeekNumberCalculator(currentDate){ //This method takes a date and calculates which week it belongs to and returns that week number.
-    let startDateOfYear = new Date(currentDate.getFullYear(), 0, 1);
-    let days = Math.floor((currentDate - startDateOfYear)/(24*60*60*1000));//Calculates from miliseconds into days.
-    let weeknumber = Math.ceil(days / 7);
+    let startDateOfYear = new Date(currentDate.getFullYear(), 0, 0);
+    let week = Math.ceil((((currentDate - startDateOfYear) / (24*60*60*1000)) + startDateOfYear.getDay() || 7) / 7) ////Calculates from miliseconds into days.
     // https://www.geeksforgeeks.org/calculate-current-week-number-in-javascript/
-    return weeknumber;
+    return week;
 }
