@@ -23,7 +23,7 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
 
     UpdateMonthUI(weeksOfMonth)
-    FillMonthUI(weeksOfMonth,monthNumber, yearNumber)
+    FillMonthUI(weeksOfMonth)
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
@@ -50,21 +50,28 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
 
     UpdateMonthUI(weeksOfMonth)
-    FillMonthUI(weeksOfMonth,monthNumber, yearNumber)
+    FillMonthUI(weeksOfMonth)
 
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
 
-function FillMonthUI(weeksInMonth, month, year){
+function FillMonthUI(weeksInMonth){
     for (let i = 0; i<weeksInMonth.length; i++){
         let targetWeek = document.getElementById("Week"+i)
         let startDateOfWeek = weeksInMonth[i][0]
         let endDateOfWeek = weeksInMonth[i][weeksInMonth[i].length-1]
-        targetWeek.innerHTML = "Days: ["+startDateOfWeek+" -> "+endDateOfWeek+"]"
+        let pElement = document.createElement('p')
+        pElement.innerHTML = "Days: ["+startDateOfWeek+" -> "+endDateOfWeek+"]"
+        pElement.setAttribute('class', "bottomBorder")
+        targetWeek.appendChild(pElement)
         let aElement = document.createElement('a')
-        aElement.setAttribute('href',"")//-------------------------------------------------------------------------------Link
-        aElement.innerHTML = "<br>Link To Week"
+
+
+        aElement.setAttribute('class',"nav-link")
+        aElement.setAttribute('href', "")//link here
+        
+        aElement.innerHTML = "Link To Week"
         targetWeek.appendChild(aElement)
     }
 }
@@ -93,16 +100,28 @@ for(let i = 0; i < weeksInMonth.length; i++){
 
     rowDiv = rowInitializer(i, rowDiv);
     if(i % 2 === 0){
+        let colDivSpacer1 = document.createElement('div')
+        colDivSpacer1.setAttribute('class',"col")
+        rowDiv.appendChild(colDivSpacer1)
         let colDiv = document.createElement('div')
-        colDiv.setAttribute('class',"col backgroundColor mt-1")
+        colDiv.setAttribute('class',"col  backgroundColor mt-3")
         colDiv.setAttribute('id',"Week"+[i])
         rowDiv.appendChild(colDiv)
     }else{
         let colDiv = document.createElement('div')
-        colDiv.setAttribute('class', "col backgroundColor mt-1")
-        colDiv.setAttribute('id',"Week"+[i])        
+        colDiv.setAttribute('class', "col offset-md-1 backgroundColor mt-3")
+        colDiv.setAttribute('id',"Week"+[i])
         rowDiv.appendChild(colDiv)
+        let colDivSpacer2 = document.createElement('div')
+        colDivSpacer2.setAttribute('class',"col")
+        rowDiv.appendChild(colDivSpacer2)
     }
+    if(i === weeksInMonth.length-1 && i%2 === 0){
+        let colDivSpacer2 = document.createElement('div')
+        colDivSpacer2.setAttribute('class',"col")
+        rowDiv.appendChild(colDivSpacer2)
+    }
+    
 }
 masterDiv.appendChild(rowDiv)
 body.appendChild(masterDiv)
@@ -139,12 +158,4 @@ function GetWeeksOfMonths(month, year){
     }
     weeksOfMonth.push(temp)
     return weeksOfMonth;
-}
-
-
-function WeekNumberCalculator(currentDate){ //This method takes a date and calculates which week it belongs to and returns that week number.
-    let startDateOfYear = new Date(currentDate.getFullYear(), 0, 0);
-    let week = Math.ceil((((currentDate - startDateOfYear) / (24*60*60*1000)) + startDateOfYear.getDay() || 7) / 7) ////Calculates from miliseconds into days.
-    // https://www.geeksforgeeks.org/calculate-current-week-number-in-javascript/
-    return week;
 }

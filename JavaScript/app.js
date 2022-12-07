@@ -77,7 +77,7 @@ function month() {
     let weeksOfMonth = GetWeeksOfMonths(parseInt(monthString), parseInt(yearString));
     //Gets the data from Json using the month number as id
     UpdateMonthUI(weeksOfMonth)
-    FillMonthUI(weeksOfMonth,parseInt(monthString), parseInt(yearString))
+    FillMonthUI(weeksOfMonth)
 
     monthVariable.innerHTML = monthString+"/"+yearString;
 };
