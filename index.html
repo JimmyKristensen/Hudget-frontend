@@ -25,6 +25,7 @@
     <script type="text/javascript" src="/JavaScript/MonthlyScript.js" defer></script>
     <script type="text/javascript" src="/JavaScript/MonthlyBudget.js" defer></script>
     <script type="text/javascript" src="/JavaScript/MonthlyFetch.js" defer></script>
+    <script type="text/javascript" src="/JavaScript/login.js" defer></script>
 
 </head>
 <body>
@@ -55,6 +56,8 @@
     </header>
 
     <main class="mt-5 position-relative">
+        <!-- VIEW -->
+        <!-- Template get's under this div-->
         <div id="view"></div>
 
         <!--Homepage template-->
@@ -157,14 +160,14 @@
         <div class="container">
           <div class="row">
             <h3 class="col text-center">Login</h3>
-            <form class="col-12">
+            <form id="loginForm" class="col-12">
               <div class="col">
                 <label>Username</label>
-                <input type="text" name="usernane" placeholder="Enter username">
+                <input type="text" id="username" name="usernane" placeholder="Enter username">
               </div>
               <div class="col mt-1">
                 <label>Password</label>
-                <input type="text" name="password" placeholder="Enter password">
+                <input type="text" id="password" name="password" placeholder="Enter password">
               </div>
               <div class="col mt-1">
                 <input type="submit" name="submit" placeholder="Submit">
@@ -173,6 +176,12 @@
                 <a href="#/createUser" >Create user</a>
               </div>
             </form>
+            <script>
+              document.forms["loginForm"].addEventListener("submit", (event) => {
+                event.preventDefault()
+                sessionTool.loginsubmit();
+              });
+            </script>
           </div>
         </div>
       </template>
@@ -182,19 +191,25 @@
         <div class="container">
           <div class="row">
             <h3 class="col text-center">Create user</h3>
-            <form class="col-12">
+            <form id="createUserForm" method="post" class="col-12">
               <div class="col">
                 <label>Username</label>
-                <input type="text" name="usernane" placeholder="Enter username">
+                <input type="text" id="username" name="username" placeholder="Enter username">
               </div>
-              <div class="col">
+              <div class="col mt-1">
                 <label>Password</label>
-                <input type="text" name="password" placeholder="Enter password">
+                <input type="text" id="password" name="password" placeholder="Enter password">
               </div>
-              <div class="col">
+              <div class="col mt-1">
                 <input type="submit" name="submit" placeholder="Create">
               </div>
             </form>
+            <script>
+              document.forms["createUserForm"].addEventListener("submit", (event) => {
+                event.preventDefault()
+                sessionTool.createUser();
+              });
+            </script>
           </div>
         </div>
       </template>
