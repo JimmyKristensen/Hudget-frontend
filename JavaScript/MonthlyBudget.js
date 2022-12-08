@@ -7,9 +7,7 @@ class Budget{
     }
 
     upload(){
-        //let CalenderDate = new Date();
         let postData = {
-            //date: CalenderDate,
             monthlyMoney: document.getElementById('monthlyMoney').value,
             dailyBudgets: [],
         }
@@ -49,8 +47,8 @@ class Budget{
 
     updateUI(index){
         let entry = this.data[index];
-        let monthlyBudgetForm = document.getElementById("monthlyBudgetForm");
-        monthlyBudgetForm.querySelector("#monthlyMoney").value+=entry.monthlyMoney;
+        let monthlyBudgetForm = document.getElementById("thisMonthBudget");
+        monthlyBudgetForm.querySelector("#monthlyMoney").innerHTML+=entry.monthlyMoney;
     }
 
 }

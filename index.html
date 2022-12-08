@@ -46,7 +46,7 @@
               </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#/login">Login</a>
                 </li>
             </ul>
@@ -90,25 +90,6 @@
         
         <!--Weekpage-->
         <template id="template-weekpage">
-          <section class="container">
-
-                <div class="container">
-                  <div class="row justify-content-center text-center">
-                    <div class="row mt-2" id="week_monthly_budget">
-                      <p class="col">Octorber:</p>
-                      <p class="col">Week 1</p>
-                      </div>
-                  </div>
-                </div>
-
-                <div class="row mt-2 justify-content-center">
-                  <div id="monthly_budget" class="col-2 text-center p-1 rounded-circle">
-                    <p>500</p>
-                  </div>
-                </div>
-              </div>
-            </div>    
-          </section>
 
           <!--Shows weekdays-->
           <section class="container mt-5">
@@ -224,24 +205,96 @@
           </div>
 
           <div class="row justify-content-center align-items-center text-center">
-            <div class="backgroundColor">
-                <form id="monthlyBudgetForm" class="row mt-3" method="post">
+
+            <!-- Button trigger modal for create budget -->
+            <button type="button" class="btn btn-primary col-2" data-toggle="modal" data-target="#createThisMonthBudget">
+              Create budget
+            </button>
+
+            <!-- Modal for create -->
+            <div class="modal fade" id="createThisMonthBudget" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Month budget</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="backgroundColor">
+                <form id="monthlyBudgetFormCreate" class="row mt-3" method="post">
                   <div class="col-12">
-                    <label for="monthly_budget">Current budget:</label>
+                    <label for="monthly_budget">Enter this month budget:</label>
                     <input id="monthlyMoney" class="col-4" name="monthly_budget" type="text">
-                    <label for="monthly_budget">,-</label>
                     <button id="submit" type="submit">Submit</button>
                   </div>
                 </form>
+                <script>
+                  document.forms["monthlyBudgetFormCreate"].addEventListener("submit", (event) => {
+                      event.preventDefault()
+                      monthlybudget.upload();
+                    });
+                </script>
               </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Modal for create budget end-->
+
+
+            <!-- Button trigger modal  for update modal-->
+            <button type="button" class="btn btn-primary offset-md-1 col-2" data-toggle="modal" data-target="#updateThisMonthBudget">
+              Update budget
+            </button>
+
+            <!-- Modal for update -->
+            <div class="modal fade" id="updateThisMonthBudget" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update this month budget</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="backgroundColor">
+                <form id="monthlyBudgetFormUpdate" class="row mt-3" method="post">
+                  <div class="col-12">
+                    <label for="monthly_budget">update this month budget:</label>
+                    <input id="monthlyMoney" class="col-4" name="monthly_budget" type="text">
+                    <button id="submit" type="submit">Submit</button>
+                  </div>
+                </form>
+                <script>
+                  document.forms["monthlyBudgetFormUpdate"].addEventListener("submit", (event) => {
+                      event.preventDefault()
+                      monthlybudget.upload();
+                    });
+                </script>
+              </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Modal for create budget end-->
+            
           </div>
-          <script>
-            document.forms["monthlyBudgetForm"].addEventListener("submit", (event) => {
-                event.preventDefault()
-                monthlybudget.upload();
-              });
-          </script>
           
+          <div class="row justify-content-center align-items-center text-center mt-5">
+            <div class="col-2 backgroundColor pb-2 pt-4" id="thisMonthBudget">
+              <p id="monthlyMoney">Current budget: </p>
+            </div>
+          </div>
+
           <div id='monthContent'>
             <!--Ugerne kommer i denne div-->
           </div>
