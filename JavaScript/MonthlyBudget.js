@@ -1,4 +1,4 @@
- 'use strict'
+'use strict'
 
 class Budget{
     constructor(){
@@ -42,7 +42,7 @@ class Budget{
     async fetchData(){
         let response = await fetch(this.url);
         this.data = await response.json();
-        this.updateUI(1);
+        this.updateUI(0);
     }
 
     updateUI(index){

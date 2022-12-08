@@ -51,7 +51,11 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
 
     UpdateMonthUI(weeksOfMonth)
     FillMonthUI(weeksOfMonth)
-
+    /*
+    for (let i = 0; i<weeksOfMonth.length; i++){
+        console.log(weeksOfMonth[i])
+    }
+    */
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
@@ -65,17 +69,30 @@ function FillMonthUI(weeksInMonth){
         pElement.innerHTML = "Days: ["+startDateOfWeek+" -> "+endDateOfWeek+"]"
         pElement.setAttribute('class', "bottomBorder")
         targetWeek.appendChild(pElement)
-        let aElement = document.createElement('a')
+
+        let aElement = document.createElement('p')
+
+        let id = 1;
+        aElement.setAttribute('onclick',"weeklyCall("+id+")")
+        //aElement.setAttribute('href', "")//link here
+        //--------------------------------------------------------------------------
 
 
-        aElement.setAttribute('class',"nav-link")
-        aElement.setAttribute('href', "")//link here
-        
+        //console.log(fetchMonth(1))
+
+        //----------------------------------------------------------------------------
         aElement.innerHTML = "Link To Week"
         targetWeek.appendChild(aElement)
     }
 }
+function weeklyCall(id){
+    let monthObj = fetchMonth(id)
+    
 
+
+
+    console.log(monthObj)
+}
 
 function UpdateMonthUI(weeksInMonth){
     const body = document.getElementById('monthContent')
