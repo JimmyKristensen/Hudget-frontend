@@ -1,14 +1,12 @@
 'use strict'
 
 const ROUTE_TEMPLATE_KEY_HOME = 'home'
-const ROUTE_TEMPLATE_KEY_TEST = 'test'
 const ROUTE_TEMPLATE_KEY_MONTH = 'month'
 const ROUTE_TEMPLATE_KEY_WEEK = 'week'
 const ROUTE_TEMPLATE_KEY_LOGIN = 'login'
 const ROUTE_TEMPLATE_KEY_CREATEUSER = 'createUser'
 
 const ROUTE_HOME = '/'
-const ROUTE_TEST = '/test'
 const ROUTE_MONTH = '/month'
 const ROUTE_WEEK = '/week'
 const ROUTE_LOGIN = '/login'
@@ -42,9 +40,7 @@ function cloneHtmlTemplate(id) {
 function home() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-homepage'));
 };
-function test() {
-    $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('hello'));
-}
+
 function week() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-weekpage'));
 };
