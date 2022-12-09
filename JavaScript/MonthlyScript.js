@@ -72,8 +72,7 @@ function FillMonthUI(weeksInMonth){
 
         let aElement = document.createElement('p')
 
-        let id = 1;
-        aElement.setAttribute('onclick',"weeklyCall("+id+")")
+        aElement.setAttribute('onclick',"weeklyCall()")
         //aElement.setAttribute('href', "")//link here
         //--------------------------------------------------------------------------
 
@@ -85,8 +84,10 @@ function FillMonthUI(weeksInMonth){
         targetWeek.appendChild(aElement)
     }
 }
-function weeklyCall(id){
-    let monthObj = fetchMonth(id)
+function weeklyCall(){
+    let date = ;
+    let user_id = ;
+    let monthObj = fetchMonth(user_id, date)
     
 
 
