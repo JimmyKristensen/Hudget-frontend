@@ -68,6 +68,8 @@ class Login{
 
         let user = await this.userChecker(postData)
         this.setSessionUser(user)
+        toggleLoginUI(true)
+        location.href = "#/month";
         
     }
 
@@ -84,14 +86,31 @@ class Login{
     }
 
     /* End Login */
+    
+}
 
-    
-    resetSession(){
-        sessionStorage.removeItem(sessionTrue);
-        sessionStorage.removeItem(sessionId);
-        sessionStorage.removeItem(sessionUsername);
+function getUser() {
+
+    if (isLoggedIn()) {
+      return {
+        loggedIn: sessionStorage.getItem(sessionTrue),
+        username: sessionStorage.getItem(sessionUsername),
+        password: sessionStorage.getItem(sessionUsername),
+      }
     }
-    
+  }
+
+function resetUserSession() {
+    sessionStorage.removeItem(sessionTrue);
+    sessionStorage.removeItem(sessionId);
+    sessionStorage.removeItem(sessionUsername);
+}
+
+function isLoggedIn() {
+    let loggedIn = sessionStorage.getItem(sessionTrue)
+    let username = sessionStorage.getItem(sessionUsername)
+    let valid = loggedIn === 'true' && username != ''
+    return valid
 }
 
 var sessionTool = new Login();

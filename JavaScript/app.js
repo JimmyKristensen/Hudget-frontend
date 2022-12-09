@@ -4,12 +4,14 @@ const ROUTE_TEMPLATE_KEY_HOME = 'home'
 const ROUTE_TEMPLATE_KEY_MONTH = 'month'
 const ROUTE_TEMPLATE_KEY_WEEK = 'week'
 const ROUTE_TEMPLATE_KEY_LOGIN = 'login'
+const ROUTE_TEMPLATE_KEY_LOGOUT = 'logut'
 const ROUTE_TEMPLATE_KEY_CREATEUSER = 'createUser'
 
 const ROUTE_HOME = '/'
 const ROUTE_MONTH = '/month'
 const ROUTE_WEEK = '/week'
 const ROUTE_LOGIN = '/login'
+const ROUTE_LOGOUT = '/logout'
 const ROUTE_CREATEUSER = '/createUser'
 
 const VIEW_ELEMENT_ID = "#view"
@@ -17,6 +19,7 @@ const VIEW_ELEMENT_ID = "#view"
 template(ROUTE_TEMPLATE_KEY_HOME, home);
 template(ROUTE_TEMPLATE_KEY_WEEK, week);
 template(ROUTE_TEMPLATE_KEY_LOGIN, login);
+template(ROUTE_TEMPLATE_KEY_LOGOUT, logout);
 template(ROUTE_TEMPLATE_KEY_CREATEUSER, createUser);
 template(ROUTE_TEMPLATE_KEY_MONTH, month);
 
@@ -24,6 +27,7 @@ template(ROUTE_TEMPLATE_KEY_MONTH, month);
 route(ROUTE_HOME, ROUTE_TEMPLATE_KEY_HOME);
 route(ROUTE_WEEK, ROUTE_TEMPLATE_KEY_WEEK);
 route(ROUTE_LOGIN, ROUTE_TEMPLATE_KEY_LOGIN);
+route(ROUTE_LOGOUT, ROUTE_TEMPLATE_KEY_LOGOUT);
 route(ROUTE_CREATEUSER, ROUTE_TEMPLATE_KEY_CREATEUSER);
 
 
@@ -42,18 +46,30 @@ function home() {
 };
 
 function week() {
+    if(getUser().loggedIn === 'true'){
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-weekpage'));
+    } else {
+        home()
+    }
 };
 
 function login() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-login'));
 };
 
+function logout() {
+    resetUserSession()
+    toggleLoginUI(true)
+    home()
+}
+
+
 function createUser() {
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-createUser'));
 }
 
 function month() {
+    if(getUser().loggedIn === 'true'){
     $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('month'));
     let CalenderDate = new Date();
     let yearString = String(CalenderDate.getUTCFullYear());
@@ -76,4 +92,7 @@ function month() {
     FillMonthUI(weeksOfMonth)
 
     monthVariable.innerHTML = monthString+"/"+yearString;
+    } else {
+        home()
+    }
 };

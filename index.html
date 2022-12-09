@@ -42,11 +42,17 @@
                   </li><li class="nav-item active">
                 <a class="nav-link" href="#/week">Week</a>
                 </li>
-                <li class="nav-item active">
+                <li id="monthLink" class="nav-item active">
                   <a class="nav-link" href="#/month">Month</a>
               </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
+            <ul id="logout" class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                  <b>Welcome</b> <span id="login-username"></span>
+                  <a class="nav-link" href="#/logout">Logout</a>
+              </li>
+            </ul>
+            <ul id="login" class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#/login">Login</a>
                 </li>
@@ -148,7 +154,7 @@
               </div>
               <div class="col mt-1">
                 <label>Password</label>
-                <input type="text" id="password" name="password" placeholder="Enter password">
+                <input type="password" id="password" name="password" placeholder="Enter password">
               </div>
               <div class="col mt-1">
                 <input type="submit" name="submit" placeholder="Submit">
@@ -179,7 +185,7 @@
               </div>
               <div class="col mt-1">
                 <label>Password</label>
-                <input type="text" id="password" name="password" placeholder="Enter password">
+                <input type="password" id="password" name="password" placeholder="Enter password">
               </div>
               <div class="col mt-1">
                 <input type="submit" name="submit" placeholder="Create">
