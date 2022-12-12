@@ -1,5 +1,6 @@
 let CalenderDate = new Date();
 
+
 function monthForwardsActivator(){ //What happens when user hits the month navigation arrow
     const monthVariable = document.getElementById("MonthVariable"); //placed here since the template isen't loaded in to the doc before this is called.
     const htmlString = monthVariable.innerHTML;
@@ -47,7 +48,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     }
     //-------------------above is month changer code
     //create the week objects
-    let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
+    let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber, 10);  //Start dag 10 //test for timmy
 
     UpdateMonthUI(weeksOfMonth)
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
@@ -80,12 +81,7 @@ function FillMonthUI(weeksInMonth){
 
         aElement.setAttribute('onclick',"weeklyCall()")
         aElement.setAttribute('class',"text-primary")
-        //aElement.setAttribute('href', "")//link here
-        //--------------------------------------------------------------------------
 
-
-
-        //----------------------------------------------------------------------------
         aElement.innerHTML = "Link To Week"
         targetWeek.appendChild(aElement)
     }
@@ -185,7 +181,7 @@ function UpdateMonthUI(weeksInMonth){
 
 function GetWeeksOfMonths(month, year, start){
     if(start == undefined){
-        start = 12
+        start = 1
     }
 
     let firstDayOfMonth = new Date(year, month-1, start);
