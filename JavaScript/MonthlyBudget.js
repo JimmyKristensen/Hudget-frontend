@@ -32,7 +32,9 @@ class Budget{
         }
         return data
     }
-
+    async updateData(updateData){
+        
+    }
     
 
     update(){

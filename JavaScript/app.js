@@ -73,7 +73,6 @@ function month() {
         $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('month'));
         let CalenderDate = new Date();
         let yearString = String(CalenderDate.getUTCFullYear());
-        //CalenderDate.setMonth(3); //Test
         let monthString = String(CalenderDate.getUTCMonth() +1);
         const monthVariable = document.getElementById("MonthVariable");
         if(monthString.length < 2){
@@ -91,6 +90,11 @@ function month() {
         UpdateMonthUI(weeksOfMonth)
         fillStorage(weeksOfMonth,monthString,yearString)
         FillMonthUI(weeksOfMonth)
+        FetchAllWeeks()
+        
+
+
+        
 
         monthVariable.innerHTML = monthString+"/"+yearString;
     } else {

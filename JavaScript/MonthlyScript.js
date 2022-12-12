@@ -21,7 +21,7 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
 
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
-
+    console.log(weeksOfMonth)
     UpdateMonthUI(weeksOfMonth)
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
     FillMonthUI(weeksOfMonth)
@@ -78,40 +78,44 @@ function FillMonthUI(weeksInMonth){
         targetWeek.appendChild(pElement)
         let aElement = document.createElement('p')
 
-
-        aElement.setAttribute('onclick',"weeklyCall()")
+        
+        aElement.setAttribute('onclick',"weekIndex( "+ i+" )")
         aElement.setAttribute('class',"text-primary")
-
         aElement.innerHTML = "Link To Week"
         targetWeek.appendChild(aElement)
     }
 }
-async function weeklyCall(){
+function weekIndex(i){
+    window.localStorage.setItem("IndexWeek"+i,String(i))
+    console.log("This here:"+window.localStorage.getItem("IndexWeek"+i))
+
+    let FilledMonth = JSON.parse(window.localStorage.getItem("FilledMonth"))
+
+    let currentWeek = FilledMonth[window.localStorage.getItem("IndexWeek"+i)]
+
+    window.localStorage.setItem("currentWeek", JSON.stringify(currentWeek))
+    //REDRIECT
+}
+
+async function FetchAllWeeks(){
     let WeeksInMonth = JSON.parse(window.localStorage.getItem("WeeksInMonth"))
     let monthNumber = window.localStorage.getItem("MonthNumber")
     let yearNumber = window.localStorage.getItem("YearNumber")
 
-    console.log(WeeksInMonth + "\n" + monthNumber+yearNumber)
 
-    console.log("This is weekly call:")
-    console.log("Date: "+monthNumber+"/"+yearNumber)
-    console.log(WeeksInMonth)
+
     let date = (yearNumber+"-"+monthNumber)
-
     let user = getUser();
-
-
     let monthObj = await fetchMonth(user.userId, date)
-    console.log(monthObj)
+
     let dailyArray = monthObj.dailyBudgets;
-    console.log("Here is our array for fun code :) :")
-    console.log(dailyArray)
+    
+
 
 
     let dailyChoosen = 0;
     //Array of array of days in every week
     for (let i = 0; i < WeeksInMonth.length; i++) {
-
         //Takes an array of the array specefik index and replaces it with the dailyChosen
         for (let j = 0; j < WeeksInMonth[i].length; j++) {
 
@@ -120,7 +124,8 @@ async function weeklyCall(){
 
         }
     }
-    console.log(WeeksInMonth)
+    console.log(WeeksInMonth[0])
+    window.localStorage.setItem("FilledMonth", JSON.stringify(WeeksInMonth))
 }
 
 
