@@ -94,8 +94,8 @@ function getUser() {
     if (isLoggedIn()) {
       return {
         loggedIn: sessionStorage.getItem(sessionTrue),
-        userId: sessionStrorage.getItem(sessionId),
         username: sessionStorage.getItem(sessionUsername),
+        userId: sessionStorage.getItem(sessionId),
       }
     }
   }
