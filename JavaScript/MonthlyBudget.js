@@ -7,8 +7,13 @@ class Budget{
     }
 
     upload(){
+        let user = getUser()
         let postData = {
             monthlyMoney: document.getElementById('monthlyMoney').value,
+                user: {
+                    user_id: user.userId,
+                    name: user.username
+                },
             dailyBudgets: [],
         }
 
