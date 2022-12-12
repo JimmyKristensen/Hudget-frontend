@@ -48,7 +48,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     }
     //-------------------above is month changer code
     //create the week objects
-    let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber, 10);  //Start dag 10 //test for timmy
+    let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);  //Start dag 10 //test for timmy
 
     UpdateMonthUI(weeksOfMonth)
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
