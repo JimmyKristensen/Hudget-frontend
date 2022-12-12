@@ -47,7 +47,7 @@ function home() {
 
 function week() {
     if(getUser().loggedIn === 'true'){
-    $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-weekpage'));
+        $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-weekpage'));
     } else {
         home()
     }
@@ -70,28 +70,29 @@ function createUser() {
 
 function month() {
     if(getUser().loggedIn === 'true'){
-    $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('month'));
-    let CalenderDate = new Date();
-    let yearString = String(CalenderDate.getUTCFullYear());
-    //CalenderDate.setMonth(3); //Test
-    let monthString = String(CalenderDate.getUTCMonth() +1);
-    const monthVariable = document.getElementById("MonthVariable");
-    if(monthString.length < 2){
-        monthString = 0 + monthString
-    }
-    
-    
-    
-    monthlybudget.update()
-    
+        $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('month'));
+        let CalenderDate = new Date();
+        let yearString = String(CalenderDate.getUTCFullYear());
+        //CalenderDate.setMonth(3); //Test
+        let monthString = String(CalenderDate.getUTCMonth() +1);
+        const monthVariable = document.getElementById("MonthVariable");
+        if(monthString.length < 2){
+            monthString = 0 + monthString
+        }
 
-    //Need work!!! add weekobjects then everything else
-    let weeksOfMonth = GetWeeksOfMonths(parseInt(monthString), parseInt(yearString));
-    //Gets the data from Json using the month number as id
-    UpdateMonthUI(weeksOfMonth)
-    FillMonthUI(weeksOfMonth)
 
-    monthVariable.innerHTML = monthString+"/"+yearString;
+
+        monthlybudget.update()
+
+
+        //Need work!!! add weekobjects then everything else
+        let weeksOfMonth = GetWeeksOfMonths(parseInt(monthString), parseInt(yearString));
+        //Gets the data from Json using the month number as id
+        UpdateMonthUI(weeksOfMonth)
+        fillStorage(weeksOfMonth,monthString,yearString)
+        FillMonthUI(weeksOfMonth)
+
+        monthVariable.innerHTML = monthString+"/"+yearString;
     } else {
         home()
     }
