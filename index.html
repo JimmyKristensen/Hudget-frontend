@@ -41,10 +41,10 @@
                 <a class="nav-link" href="#">Home</a>
                   </li><li class="nav-item active">
                 <a class="nav-link" href="#/week">Week</a>
-                </li>
-                <li id="monthLink" class="nav-item active">
-                  <a class="nav-link" href="#/month">Month</a>
               </li>
+              <li id="monthLink" class="nav-item active">
+                <a class="nav-link" href="#/month">Month</a>
+                </li>
             </ul>
             <ul id="logout" class="navbar-nav ml-auto">
               <li class="nav-item active">
@@ -271,20 +271,20 @@
                   </div>
                   <div class="modal-body">
                     <div class="backgroundColor">
-                <form id="monthlyBudgetFormUpdate" class="row mt-3" method="post">
-                  <div class="col-12">
-                    <label for="monthly_budget">update this month budget:</label>
-                    <input id="monthlyMoney" class="col-4" name="monthly_budget" type="text">
-                    <button id="submit" type="submit">Submit</button>
-                  </div>
-                </form>
-                <script>
-                  document.forms["monthlyBudgetFormUpdate"].addEventListener("submit", (event) => {
-                      event.preventDefault()
-                      monthlybudget.upload();
-                    });
-                </script>
-              </div>
+                      <form id="monthlyBudgetFormUpdate" class="row mt-3" method="post">
+                        <div class="col-12">
+                          <label for="monthly_budget">update this month budget:</label>
+                          <input id="monthlyMoney" class="col-4" name="monthly_budget" type="text">
+                          <button id="submit" type="submit">Submit</button>
+                        </div>
+                      </form>
+                      <script>
+                        document.forms["monthlyBudgetFormUpdate"].addEventListener("submit", (event) => {
+                            event.preventDefault()
+                            monthlybudget.upload();
+                          });
+                      </script>
+                    </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
