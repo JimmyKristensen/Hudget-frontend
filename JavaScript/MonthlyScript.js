@@ -18,13 +18,14 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     if(monthNumberLen < 2){
         monthNumber = String(0).concat(monthNumber)
     }
-
+    
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
     console.log(weeksOfMonth)
     UpdateMonthUI(weeksOfMonth)
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
     FillMonthUI(weeksOfMonth)
+    FetchAllWeeks()
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
@@ -47,6 +48,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
         monthNumber = String(0).concat(monthNumber)
     }
     //-------------------above is month changer code
+    
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);  //Start dag 10 //test for timmy
 
@@ -54,10 +56,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
     FillMonthUI(weeksOfMonth)
 
-    for (let i = 0; i<weeksOfMonth.length; i++){
-        console.log(weeksOfMonth[i])
-    }
-
+    FetchAllWeeks()
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
@@ -94,6 +93,7 @@ function weekIndex(i){
     let currentWeek = FilledMonth[window.localStorage.getItem("IndexWeek"+i)]
 
     window.localStorage.setItem("currentWeek", JSON.stringify(currentWeek))
+    console.log(currentWeek)
     //REDRIECT
 }
 
@@ -103,13 +103,19 @@ async function FetchAllWeeks(){
     let yearNumber = window.localStorage.getItem("YearNumber")
 
 
-
     let date = (yearNumber+"-"+monthNumber)
     let user = getUser();
     let monthObj = await fetchMonth(user.userId, date)
-
-    let dailyArray = monthObj.dailyBudgets;
+    let dailyArray
+    try{
+        dailyArray = monthObj.dailyBudgets;
+        console.log(dailyArray)
+    }catch(e){
+        console.log("Inserting default")
+        dailyArray = ""
+    }
     
+
 
 
 
@@ -124,7 +130,7 @@ async function FetchAllWeeks(){
 
         }
     }
-    console.log(WeeksInMonth[0])
+    console.log(WeeksInMonth)
     window.localStorage.setItem("FilledMonth", JSON.stringify(WeeksInMonth))
 }
 
