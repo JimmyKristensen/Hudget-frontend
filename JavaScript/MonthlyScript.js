@@ -7,6 +7,9 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     let monthNumber = htmlString.charAt(0)+htmlString.charAt(1);
     let yearNumber = htmlString.charAt(3)+htmlString.charAt(4)+htmlString.charAt(5)+htmlString.charAt(6);
 
+    let monthlyBudgetForm = document.getElementById("thisMonthBudget");
+    monthlyBudgetForm.querySelector("#monthlyMoney").innerHTML="Current Budget: ";
+    
     monthNumber = parseInt(monthNumber)+1
     if(parseInt(monthNumber) > 12){
         yearNumber = parseInt(yearNumber)+1
@@ -18,7 +21,9 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     if(monthNumberLen < 2){
         monthNumber = String(0).concat(monthNumber)
     }
-    
+
+
+    monthlybudget.update(monthNumber, yearNumber)
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
     //console.log(weeksOfMonth)
@@ -35,6 +40,8 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     const htmlString = monthVariable.innerHTML;
     let monthNumber = htmlString.charAt(0)+htmlString.charAt(1);
     let yearNumber = htmlString.charAt(3)+htmlString.charAt(4)+htmlString.charAt(5)+htmlString.charAt(6);
+    let monthlyBudgetForm = document.getElementById("thisMonthBudget");
+    monthlyBudgetForm.querySelector("#monthlyMoney").innerHTML="Current Budget: ";
     //-------------------below is month changer code
     monthNumber = parseInt(monthNumber)-1
 
@@ -48,7 +55,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
         monthNumber = String(0).concat(monthNumber)
     }
     //-------------------above is month changer code
-    
+    monthlybudget.update(monthNumber, yearNumber)
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);  //Start dag 10 //test for timmy
 

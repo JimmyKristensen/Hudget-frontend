@@ -81,7 +81,7 @@ function month() {
 
 
 
-        monthlybudget.update()
+        monthlybudget.update(monthString, yearString)
 
 
         //Need work!!! add weekobjects then everything else

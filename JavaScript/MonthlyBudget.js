@@ -3,7 +3,6 @@
 class Budget{
     constructor(){
         this.url = "http://localhost:8080/api/v1/monthlybudget/";
-        this.fetchData();
     }
 
     upload(){
@@ -65,20 +64,27 @@ class Budget{
     
     
 
-    update(){
-        this.fetchData();
+    update(month, year){
+        monthlybudget.fetchData(month, year);
     }
 
-    async fetchData(){
-        let response = await fetch(this.url);
+    async fetchData(month, year){
+        try{
+        let date = year+"-"+month
+        let user = getUser();
+
+        let response = await fetch(this.url+"date/"+user.userId + "/" + date);
         this.data = await response.json();
-        this.updateUI(0);
+        this.updateUI();
+        }catch(e){
+            
+        }
     }
 
-    updateUI(index){
-        let entry = this.data[index];
+    updateUI(){
+        let entry = this.data;
         let monthlyBudgetForm = document.getElementById("thisMonthBudget");
-        monthlyBudgetForm.querySelector("#monthlyMoney").innerHTML+=entry.monthlyMoney;
+        monthlyBudgetForm.querySelector("#monthlyMoney").innerHTML="Current Budget: "+entry.monthlyMoney;
     }
 }
 
