@@ -21,7 +21,7 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
-    console.log(weeksOfMonth)
+    //console.log(weeksOfMonth)
     UpdateMonthUI(weeksOfMonth)
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
     FillMonthUI(weeksOfMonth)
@@ -86,14 +86,14 @@ function FillMonthUI(weeksInMonth){
 }
 function weekIndex(i){
     window.localStorage.setItem("IndexWeek"+i,String(i))
-    console.log("This here:"+window.localStorage.getItem("IndexWeek"+i))
+    //console.log("This here:"+window.localStorage.getItem("IndexWeek"+i))
 
     let FilledMonth = JSON.parse(window.localStorage.getItem("FilledMonth"))
 
     let currentWeek = FilledMonth[window.localStorage.getItem("IndexWeek"+i)]
 
     window.localStorage.setItem("currentWeek", JSON.stringify(currentWeek))
-    console.log(currentWeek)
+    //console.log(currentWeek)
     //REDRIECT
 }
 
@@ -106,10 +106,11 @@ async function FetchAllWeeks(){
     let date = (yearNumber+"-"+monthNumber)
     let user = getUser();
     let monthObj = await fetchMonth(user.userId, date)
+    window.localStorage.setItem("Month",JSON.stringify(monthObj))
     let dailyArray
     try{
         dailyArray = monthObj.dailyBudgets;
-        console.log(dailyArray)
+        //console.log(dailyArray)
     }catch(e){
         console.log("Inserting default")
         dailyArray = ""
@@ -130,7 +131,7 @@ async function FetchAllWeeks(){
 
         }
     }
-    console.log(WeeksInMonth)
+    //console.log(WeeksInMonth)
     window.localStorage.setItem("FilledMonth", JSON.stringify(WeeksInMonth))
 }
 

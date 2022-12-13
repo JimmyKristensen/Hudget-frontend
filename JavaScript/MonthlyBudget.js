@@ -2,7 +2,7 @@
 
 class Budget{
     constructor(){
-        this.url = "http://localhost:8080/api/v1/monthlybudget";
+        this.url = "http://localhost:8080/api/v1/monthlybudget/";
         this.fetchData();
     }
 
@@ -18,6 +18,30 @@ class Budget{
         }
 
         this.postData(postData);
+    }
+    change(){
+        let updateData = {
+            monthlyMoney: document.getElementById('monthlyUpdateMoney').value
+        }
+        this.updateData(updateData)
+    }
+    async updateData(updateData){
+        let settings = {
+            method: 'PATCH',
+            body: JSON.stringify(updateData),
+            headers: { 'Content-Type': 'application/json; charset=utf-8' }
+        }
+        let data = null
+
+        try{
+            let monthly = JSON.parse(window.localStorage.getItem("Month"))
+            let user_id = monthly.monthly_Id;
+            let response = await fetch(this.url +"money/"+ user_id, settings)
+            data = await response.json;
+        } catch (error){
+            console.log(error)
+        }
+        return data
     }
 
     //Post Request
@@ -37,9 +61,8 @@ class Budget{
         }
         return data
     }
-    async updateData(updateData){
-        
-    }
+    
+    
     
 
     update(){
@@ -57,7 +80,6 @@ class Budget{
         let monthlyBudgetForm = document.getElementById("thisMonthBudget");
         monthlyBudgetForm.querySelector("#monthlyMoney").innerHTML+=entry.monthlyMoney;
     }
-
 }
 
 

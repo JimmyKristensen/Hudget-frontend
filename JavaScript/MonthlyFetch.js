@@ -6,7 +6,7 @@ async function fetchMonth(user_id, date) {
     try{
         const response = await fetch(url+user_id+"/"+date)
         const data = await response.json()
-        console.log(data)
+        //console.log(data)
         return data;
     }catch(e){
         console.log("There is no data for this")
