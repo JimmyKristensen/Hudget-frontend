@@ -78,9 +78,10 @@ function FillMonthUI(weeksInMonth){
         targetWeek.appendChild(pElement)
         let aElement = document.createElement('p')
 
-        
+
         aElement.setAttribute('onclick',"weekIndex( "+ i+" )")
         aElement.setAttribute('class',"text-primary")
+
         aElement.innerHTML = "Link To Week"
         targetWeek.appendChild(aElement)
     }
@@ -94,7 +95,9 @@ function weekIndex(i){
     let currentWeek = FilledMonth[window.localStorage.getItem("IndexWeek"+i)]
 
     window.localStorage.setItem("currentWeek", JSON.stringify(currentWeek))
+    console.log(currentWeek)
     //REDRIECT
+    location.href = "#/week";
 }
 
 async function FetchAllWeeks(){
@@ -102,20 +105,25 @@ async function FetchAllWeeks(){
     let monthNumber = window.localStorage.getItem("MonthNumber")
     let yearNumber = window.localStorage.getItem("YearNumber")
 
+    console.log(WeeksInMonth + "\n" + monthNumber+yearNumber)
 
 
     let date = (yearNumber+"-"+monthNumber)
+
     let user = getUser();
+
+
     let monthObj = await fetchMonth(user.userId, date)
 
     let dailyArray = monthObj.dailyBudgets;
-    
+
 
 
 
     let dailyChoosen = 0;
     //Array of array of days in every week
     for (let i = 0; i < WeeksInMonth.length; i++) {
+
         //Takes an array of the array specefik index and replaces it with the dailyChosen
         for (let j = 0; j < WeeksInMonth[i].length; j++) {
 
@@ -124,7 +132,7 @@ async function FetchAllWeeks(){
 
         }
     }
-    console.log(WeeksInMonth[0])
+    console.log(WeeksInMonth)
     window.localStorage.setItem("FilledMonth", JSON.stringify(WeeksInMonth))
 }
 

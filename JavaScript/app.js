@@ -48,6 +48,7 @@ function home() {
 function week() {
     if(getUser().loggedIn === 'true'){
         $(VIEW_ELEMENT_ID).html( cloneHtmlTemplate('template-weekpage'));
+        dailyBudget()
     } else {
         home()
     }
@@ -82,7 +83,6 @@ function month() {
 
 
         monthlybudget.update()
-
 
         //Need work!!! add weekobjects then everything else
         let weeksOfMonth = GetWeeksOfMonths(parseInt(monthString), parseInt(yearString));

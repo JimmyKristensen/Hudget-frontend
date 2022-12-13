@@ -47,6 +47,10 @@ footer {
     color: rgb(220, 220, 21);
 }
 
+.cursor{
+    cursor: pointer;
+}
+
 .backgroundColor{
     background-color: #dcecd6;
 }
