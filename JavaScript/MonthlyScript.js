@@ -7,6 +7,9 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     let monthNumber = htmlString.charAt(0)+htmlString.charAt(1);
     let yearNumber = htmlString.charAt(3)+htmlString.charAt(4)+htmlString.charAt(5)+htmlString.charAt(6);
 
+    let monthlyBudgetForm = document.getElementById("thisMonthBudget");
+    monthlyBudgetForm.querySelector("#monthlyMoney").innerHTML="Current Budget: ";
+    
     monthNumber = parseInt(monthNumber)+1
     if(parseInt(monthNumber) > 12){
         yearNumber = parseInt(yearNumber)+1
@@ -19,12 +22,15 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
         monthNumber = String(0).concat(monthNumber)
     }
 
+
+    monthlybudget.update(monthNumber, yearNumber)
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);
-    console.log(weeksOfMonth)
+    //console.log(weeksOfMonth)
     UpdateMonthUI(weeksOfMonth)
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
     FillMonthUI(weeksOfMonth)
+    FetchAllWeeks()
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
@@ -34,6 +40,8 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     const htmlString = monthVariable.innerHTML;
     let monthNumber = htmlString.charAt(0)+htmlString.charAt(1);
     let yearNumber = htmlString.charAt(3)+htmlString.charAt(4)+htmlString.charAt(5)+htmlString.charAt(6);
+    let monthlyBudgetForm = document.getElementById("thisMonthBudget");
+    monthlyBudgetForm.querySelector("#monthlyMoney").innerHTML="Current Budget: ";
     //-------------------below is month changer code
     monthNumber = parseInt(monthNumber)-1
 
@@ -47,6 +55,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
         monthNumber = String(0).concat(monthNumber)
     }
     //-------------------above is month changer code
+    monthlybudget.update(monthNumber, yearNumber)
     //create the week objects
     let weeksOfMonth = GetWeeksOfMonths(monthNumber, yearNumber);  //Start dag 10 //test for timmy
 
@@ -54,10 +63,7 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
     FillMonthUI(weeksOfMonth)
 
-    for (let i = 0; i<weeksOfMonth.length; i++){
-        console.log(weeksOfMonth[i])
-    }
-
+    FetchAllWeeks()
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
@@ -88,7 +94,7 @@ function FillMonthUI(weeksInMonth){
 }
 function weekIndex(i){
     window.localStorage.setItem("IndexWeek"+i,String(i))
-    console.log("This here:"+window.localStorage.getItem("IndexWeek"+i))
+    //console.log("This here:"+window.localStorage.getItem("IndexWeek"+i))
 
     let FilledMonth = JSON.parse(window.localStorage.getItem("FilledMonth"))
 
@@ -107,15 +113,22 @@ async function FetchAllWeeks(){
 
     console.log(WeeksInMonth + "\n" + monthNumber+yearNumber)
 
-
     let date = (yearNumber+"-"+monthNumber)
 
     let user = getUser();
 
 
     let monthObj = await fetchMonth(user.userId, date)
-
-    let dailyArray = monthObj.dailyBudgets;
+    window.localStorage.setItem("Month",JSON.stringify(monthObj))
+    let dailyArray
+    try{
+        dailyArray = monthObj.dailyBudgets;
+        //console.log(dailyArray)
+    }catch(e){
+        console.log("Inserting default")
+        dailyArray = ""
+    }
+    
 
 
 
@@ -132,7 +145,7 @@ async function FetchAllWeeks(){
 
         }
     }
-    console.log(WeeksInMonth)
+    console.log(WeeksInMonth[0])
     window.localStorage.setItem("FilledMonth", JSON.stringify(WeeksInMonth))
 }
 

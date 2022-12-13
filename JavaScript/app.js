@@ -82,7 +82,7 @@ function month() {
 
 
 
-        monthlybudget.update()
+        monthlybudget.update(monthString, yearString)
 
         //Need work!!! add weekobjects then everything else
         let weeksOfMonth = GetWeeksOfMonths(parseInt(monthString), parseInt(yearString));

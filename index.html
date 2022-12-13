@@ -240,14 +240,14 @@
                       <form id="monthlyBudgetFormUpdate" class="row mt-3" method="post">
                         <div class="col-12">
                           <label for="monthly_budget">update this month budget:</label>
-                          <input id="monthlyMoney" class="col-4" name="monthly_budget" type="text">
+                          <input id="monthlyUpdateMoney" class="col-4" name="monthly_budget" type="text">
                           <button id="submit" type="submit">Submit</button>
                         </div>
                       </form>
                       <script>
                         document.forms["monthlyBudgetFormUpdate"].addEventListener("submit", (event) => {
                             event.preventDefault()
-                            monthlybudget.upload();
+                            monthlybudget.change();
                           });
                       </script>
                     </div>
