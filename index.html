@@ -38,11 +38,6 @@
            </button>
            <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-                  </li><li class="nav-item active">
-                <a class="nav-link" href="#/week">Week</a>
-              </li>
               <li id="monthLink" class="nav-item active">
                 <a class="nav-link" href="#/month">Month</a>
                 </li>
@@ -116,11 +111,11 @@
             <form id="loginForm" class="col-12">
               <div class="col">
                 <label>Username</label>
-                <input type="text" id="username" name="usernane" placeholder="Enter username">
+                <input type="text" id="username" name="usernane" placeholder="Enter username" required>
               </div>
               <div class="col mt-1">
                 <label>Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter password">
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
               </div>
               <div class="col mt-1">
                 <input type="submit" name="submit" placeholder="Submit">
@@ -147,11 +142,11 @@
             <form id="createUserForm" method="post" class="col-12">
               <div class="col">
                 <label>Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter username">
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
               </div>
               <div class="col mt-1">
                 <label>Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter password">
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
               </div>
               <div class="col mt-1">
                 <input type="submit" name="submit" placeholder="Create">

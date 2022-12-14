@@ -56,6 +56,7 @@ class Login{
             return data;
         } catch (error){
             console.log(error)
+            return null;
         }
         /*return data*/
     }
@@ -67,9 +68,12 @@ class Login{
         }
 
         let user = await this.userChecker(postData)
+        if(user != null){
         this.setSessionUser(user)
-        toggleLoginUI(true)
         location.href = "#/month";
+        } else {
+            console.log("Login in bitch")
+        }
         
     }
 
