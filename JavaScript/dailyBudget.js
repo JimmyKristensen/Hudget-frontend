@@ -52,11 +52,9 @@ function dailyBudget(){
 function mealplan(mealPLanArray, money, id){
     let mealPlanDiv = document.getElementsByClassName('mealplan'+id)
     let dailyBugdetMoney = parseInt(money);
-    console.log(dailyBugdetMoney)
     let mealArray = mealPLanArray;
     for (let dataIndex in mealArray) {
         let mealEntry = mealArray[dataIndex]
-        console.log(mealEntry)
         let mealName = mealEntry.name;
         let percentageOfBudget = parseFloat("0."+mealEntry.percentageOfBudget);
         let mealProcentOfDaily = dailyBugdetMoney * percentageOfBudget;
