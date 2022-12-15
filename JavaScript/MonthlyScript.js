@@ -29,8 +29,12 @@ function monthForwardsActivator(){ //What happens when user hits the month navig
     //console.log(weeksOfMonth)
     UpdateMonthUI(weeksOfMonth)
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
-    FillMonthUI(weeksOfMonth)
     FetchAllWeeks()
+    FillMonthUI(weeksOfMonth)
+    
+
+
+
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
 
@@ -61,11 +65,13 @@ function MonthBackwardsActivator(){ //What happens when the user hits the month 
 
     UpdateMonthUI(weeksOfMonth)
     fillStorage(weeksOfMonth, monthNumber, yearNumber)
+    FetchAllWeeks()
     FillMonthUI(weeksOfMonth)
 
-    FetchAllWeeks()
+
     monthVariable.innerHTML = monthNumber+"/"+yearNumber;
 }
+
 
 function fillStorage(weeksInMonth, monthNumber, yearNumber){
     window.localStorage.setItem('WeeksInMonth', JSON.stringify(weeksInMonth))
@@ -90,6 +96,8 @@ function FillMonthUI(weeksInMonth){
 
         aElement.innerHTML = "Link To Week"
         targetWeek.appendChild(aElement)
+        
+        
     }
 }
 function weekIndex(i){
@@ -101,7 +109,7 @@ function weekIndex(i){
     let currentWeek = FilledMonth[window.localStorage.getItem("IndexWeek"+i)]
 
     window.localStorage.setItem("currentWeek", JSON.stringify(currentWeek))
-    console.log(currentWeek)
+    //console.log(currentWeek)
     //REDRIECT
     location.href = "#/week";
 }
@@ -111,7 +119,7 @@ async function FetchAllWeeks(){
     let monthNumber = window.localStorage.getItem("MonthNumber")
     let yearNumber = window.localStorage.getItem("YearNumber")
 
-    console.log(WeeksInMonth + "\n" + monthNumber+yearNumber)
+    //console.log(WeeksInMonth + "\n" + monthNumber+yearNumber)
 
     let date = (yearNumber+"-"+monthNumber)
 
@@ -145,12 +153,31 @@ async function FetchAllWeeks(){
 
         }
     }
-    console.log(WeeksInMonth[0])
+    //console.log(WeeksInMonth)
     window.localStorage.setItem("FilledMonth", JSON.stringify(WeeksInMonth))
+    
+
+    //Button disabler
+    if(WeeksInMonth[0][0] != null){
+        document.getElementById("buttonCreate").hidden = true
+        document.getElementById("buttonUpdate").hidden = false
+    }else{
+        document.getElementById("buttonCreate").hidden = false
+        document.getElementById("buttonUpdate").hidden = true
+    }
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth()+1
+    let currentYear = currentDate.getFullYear()
+    currentDate = new Date(currentYear,currentMonth,0)
+
+    let shownMonth = parseInt(window.localStorage.getItem("MonthNumber"))
+    let shownYear = parseInt(window.localStorage.getItem("YearNumber"))
+    let shownDate = new Date(shownYear, shownMonth, 0)
+    if(shownDate>currentDate){
+        document.getElementById("buttonCreate").hidden = true
+        document.getElementById("buttonUpdate").hidden = true          
+    }
 }
-
-
-
 
 
 

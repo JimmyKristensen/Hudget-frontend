@@ -7,7 +7,7 @@ class Budget{
 
     upload(){
         let user = getUser()
-        let postData = {
+        let  postData = {
             monthlyMoney: document.getElementById('monthlyMoney').value,
                 user: {
                     user_id: user.userId,
@@ -55,7 +55,7 @@ class Budget{
         try{
             let response = await fetch(this.url, settings)
             data = await response.json;
-        } catch (error){
+        } catch (error){ 
             console.log(error)
         }
         return data
