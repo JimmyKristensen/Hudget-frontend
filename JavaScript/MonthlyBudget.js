@@ -2,7 +2,7 @@
 
 class Budget{
     constructor(){
-        this.url = "http://localhost:8080/api/v1/monthlybudget/";
+        this.url = "https://hudget-backned.azurewebsites.net/api/v1/monthlybudget/";
     }
 
     upload(){

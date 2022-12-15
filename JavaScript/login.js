@@ -6,8 +6,8 @@ const sessionUsername = "username"
 
 class Login{
     constructor(){
-        this.urlCreate = "http://localhost:8080/api/v1/users";
-        this.urlSession = "http://localhost:8080/api/v1/users/userChecker";
+        this.urlCreate = "https://hudget-backned.azurewebsites.net/api/v1/users";
+        this.urlSession = "https://hudget-backned.azurewebsites.net/api/v1/users/userChecker";
     }
 
     /* create user */

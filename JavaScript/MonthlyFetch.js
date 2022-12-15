@@ -1,6 +1,6 @@
 //Husk bindestreg imellen år-måned-dag
 
-const url = "http://localhost:8080/api/v1/monthlybudget/date/"
+const url = "https://hudget-backned.azurewebsites.net/api/v1/monthlybudget/date/"
 
 async function fetchMonth(user_id, date) {
     try{
