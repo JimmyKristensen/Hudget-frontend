@@ -39,6 +39,14 @@ footer {
     background-color: #268159;
 }
 
+#title{
+    color: black;
+}
+
+#title:hover { 
+    text-decoration: none; 
+}
+
 .pink{
     color: rgb(244, 179, 190);
 }

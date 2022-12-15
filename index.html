@@ -32,7 +32,7 @@
 <body>
   <header class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light">
-          <h2>Hudget</h2>
+          <a id="title" href="#/"><h2>Hudget</h2></a>
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>
@@ -202,7 +202,9 @@
                   document.forms["monthlyBudgetFormCreate"].addEventListener("submit", (event) => {
                       event.preventDefault()
                       monthlybudget.upload();
-                      window.location.reload()
+                      setTimeout(function(){
+                       window.location.reload();
+                      }, 125);
                     });
                 </script>
               </div>

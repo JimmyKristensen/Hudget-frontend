@@ -18,6 +18,7 @@ class Login{
         }
 
         this.postData(postData);
+        location.href = "#/login";
     }
      
     //Post Request
@@ -33,7 +34,7 @@ class Login{
             let response = await fetch(this.urlCreate, settings)
             data = await response.json;
         } catch (error){
-            console.log(error)
+            alert("Unable to create user")
         }
         return data
     }
@@ -72,7 +73,7 @@ class Login{
         this.setSessionUser(user)
         location.href = "#/month";
         } else {
-            console.log("Login in bitch")
+            alert("Error with login")
         }
         
     }
