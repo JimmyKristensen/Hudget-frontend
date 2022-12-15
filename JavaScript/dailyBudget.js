@@ -2,16 +2,13 @@ window.localStorage.getItem("currentWeek")
 
 function dailyBudget(){
     const array =  JSON.parse(window.localStorage.getItem("currentWeek"));
-
     const masterDiv = document.getElementById('weekDays')
-
-    console.log(array)
-
     for (let dataIndex in array) {
         let entry = array[dataIndex];
         let id = entry.dailyBudget_Id;
         let date = entry.date;
         let money = entry.money;
+        let arrayOfMeals = entry.meal;
         $(masterDiv).append(`
             <div class="col-4 offset-md-1 backgroundColor mb-3 cursor" data-toggle="modal" data-target="#dailyModal${id}">
                 <i class="fa-solid fa-calendar-plus col-12 bottomBorder mt-4 pb-2"></i>
@@ -30,8 +27,15 @@ function dailyBudget(){
                   </div>
                   <div class="modal-body">
                     <div class="backgroundColor">
-                      <div id="mealplan">
+                      <div class="row">
+                        <div class="col">
+                          <p> Mealname </p>
+                        </div>
+                        <div class="col">
+                          <p> Price </p>
+                        </div>
                       </div>
+                      <div class="mealplan${id} col-12">
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -41,25 +45,24 @@ function dailyBudget(){
               </div>
             </div>
         `);
+        mealplan(arrayOfMeals,money, id); 
     }
-    mealplan();
 }
 
-function mealplan(){
-    const array =  JSON.parse(window.localStorage.getItem("currentWeek"));
-    const masterDiv = document.getElementById('mealplan')
-    let entry = array[3];
-    let dailyBugdetMoney = parseInt(entry.money);
-    let mealArray = entry.meal;
-    
+function mealplan(mealPLanArray, money, id){
+    let mealPlanDiv = document.getElementsByClassName('mealplan'+id)
+    let dailyBugdetMoney = parseInt(money);
+    let mealArray = mealPLanArray;
     for (let dataIndex in mealArray) {
         let mealEntry = mealArray[dataIndex]
         let mealName = mealEntry.name;
         let percentageOfBudget = parseFloat("0."+mealEntry.percentageOfBudget);
         let mealProcentOfDaily = dailyBugdetMoney * percentageOfBudget;
-        $(masterDiv).append(`
-            <div>${mealName}</div>
-            <div>${mealProcentOfDaily}</div>
+        $(mealPlanDiv).append(`
+            <div class="row">
+              <div class="col-6">${mealName}</div>
+              <div class="col-6">${mealProcentOfDaily}</div>
+            </div>
         `);
     }
 }
